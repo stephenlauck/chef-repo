@@ -20,8 +20,8 @@ fi
 # fix for https://github.com/habitat-sh/habitat/issues/6771
 hab pkg install core/hab-studio/0.83.0
 
-# pkg_origin=$1
-# pkg_name=$2
+pkg_origin=lauck
+pkg_name=migration
 
 # echo "Starting $pkg_origin/$pkg_name"
 
@@ -37,7 +37,7 @@ hab pkg install core/hab-studio/0.83.0
 # echo "Found $pkg_prefix"
 
 echo "Installing Chef Migration Package"
-hab pkg install lauck/migration
+hab pkg install $pkg_origin/$pkg_name
 
 NODE_NAME=$(hostname)
 

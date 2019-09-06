@@ -1,0 +1,51 @@
+{
+  "revision_id": "2f689b7cef330cb0eff2382d3fe798fc3a21583d6199e3db7065994e81bbdb90",
+  "name": "migration",
+  "run_list": [
+    "recipe[fingerprint::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "fingerprint": {
+      "version": "0.1.0",
+      "identifier": "7418bed03493fe0ee2efd8d7ed81f5ba9b70344d",
+      "dotted_decimal_identifier": "32678305114395646.4190169437040001.270181820544077",
+      "source": "../cookbooks/fingerprint",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": null,
+        "working_tree_clean": true,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "../cookbooks/fingerprint"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "fingerprint",
+        "= 0.1.0"
+      ]
+    ],
+    "dependencies": {
+      "fingerprint (0.1.0)": [
+
+      ]
+    }
+  }
+}

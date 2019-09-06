@@ -21,7 +21,7 @@ cd chef-repo
 knife client list
 ```
 
-## Add Node to migration
+## Run on all nodes to add them to migration
 
 `curl https://raw.githubusercontent.com/stephenlauck/chef-repo/master/bootstrap.sh | sudo bash`
 

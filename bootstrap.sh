@@ -20,21 +20,24 @@ fi
 # fix for https://github.com/habitat-sh/habitat/issues/6771
 hab pkg install core/hab-studio/0.83.0
 
-pkg_origin=$1
-pkg_name=$2
+# pkg_origin=$1
+# pkg_name=$2
 
-echo "Starting $pkg_origin/$pkg_name"
+# echo "Starting $pkg_origin/$pkg_name"
 
-latest_hart_file=$(ls -la /tmp/results/$pkg_origin-$pkg_name* | tail -n 1 | cut -d " " -f 10)
-echo "Latest hart file is $latest_hart_file"
+# latest_hart_file=$(ls -la /tmp/results/$pkg_origin-$pkg_name* | tail -n 1 | cut -d " " -f 10)
+# echo "Latest hart file is $latest_hart_file"
 
-echo "Installing $latest_hart_file"
-hab pkg install $latest_hart_file
+# echo "Installing $latest_hart_file"
+# hab pkg install $latest_hart_file
 
-echo "Determing pkg_prefix for $latest_hart_file"
-pkg_prefix=$(find /hab/pkgs/$pkg_origin/$pkg_name -maxdepth 2 -mindepth 2 | sort | tail -n 1)
+# echo "Determing pkg_prefix for $latest_hart_file"
+# pkg_prefix=$(find /hab/pkgs/$pkg_origin/$pkg_name -maxdepth 2 -mindepth 2 | sort | tail -n 1)
 
-echo "Found $pkg_prefix"
+# echo "Found $pkg_prefix"
+
+echo "Installing Chef Migration Package"
+hab pkg install lauck/migration
 
 NODE_NAME=$(hostname)
 

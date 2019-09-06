@@ -21,7 +21,7 @@ cd chef-repo
 knife client list
 ```
 
-## On Node to do fingerprinting
+## Add Node to migration
 
 `curl https://raw.githubusercontent.com/stephenlauck/chef-repo/master/bootstrap.sh | sudo bash`
 

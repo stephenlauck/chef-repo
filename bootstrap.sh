@@ -36,7 +36,7 @@ pkg_name=migration
 
 # echo "Found $pkg_prefix"
 
-echo "Installing Chef Migration Package"
+echo "Installing $pkg_origin/$pkg_name"
 hab pkg install $pkg_origin/$pkg_name
 
 NODE_NAME=$(hostname)

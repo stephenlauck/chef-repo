@@ -1,3 +1,0 @@
-I, [2019-09-05T21:57:25.232884 #11589]  INFO -- Kitchen: -----> Starting Kitchen (v2.2.5)
-I, [2019-09-05T21:57:28.991966 #11589]  INFO -- Kitchen: -----> Destroying <base-centos-76>...
-I, [2019-09-05T21:57:40.898322 #11589]  INFO -- Kitchen: -----> Kitchen is finished. (0m15.67s)

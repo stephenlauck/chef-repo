@@ -32,3 +32,12 @@ Key not found, needs to be on SAAS bldr?
 
 SSL issues when uplaoding key
 `export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem`
+
+Build hab package:
+
+```
+hab studio enter
+build
+hab pkg upload results/lauck-migration-0.1.0-20190906051354-x86_64-linux.hart
+hab pkg promote lauck/migration/0.1.0/20190906051354 stable
+```

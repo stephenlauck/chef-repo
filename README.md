@@ -1,39 +1,43 @@
-https://manage.chef.io/signup
+# Chef upgrade and migration setup
 
-fullname
-email
-username
+## Register for Account
 
+Go to https://manage.chef.io/signup
 
-migration
-migration
+fullname: chef migration
+email: lauck@chef.io
+username: migration
 
-create org
-
+create org:
 migration full name
 migration666 shortname
 
 `download starter kit`
 
+## Validate Connectivity
+
 ```
 cd chef-repo
-
 knife client list
+```
 
-On the kitchen node:
+## On Node to do fingerprinting
 
 `curl https://raw.githubusercontent.com/stephenlauck/chef-repo/master/bootstrap.sh | sudo bash`
 
 
-Bug Notes:
+## Bug Notes
 
 Key not found, needs to be on SAAS bldr?
+
 `hab origin key upload lauck`
 
 SSL issues when uplaoding key
+
 `export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem`
 
-Build hab package:
+
+## Build hab package
 
 ```
 hab studio enter

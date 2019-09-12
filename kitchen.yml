@@ -2,7 +2,6 @@
 driver:
   name: vagrant
   synced_folders:
-    - ["./results", "/tmp/results"]
     - ["./.chef", "/etc/chef"]
 
 provisioner:
@@ -23,8 +22,11 @@ suites:
         test/integration/base
 
 lifecycle:
+  pre_converge:
+    - chef install ./cookbooks/fingerprint/Policyfile.rb || chef update ./cookbooks/fingerprint/Policyfile.rb
+    - chef push kitchen ./cookbooks/fingerprint/Policyfile.rb
   pre_destroy:
   - remote: rm /etc/chef/client.*
   post_destroy:
-  - knife node delete base-centos-76.vagrantup.com -y
-  - knife client delete base-centos-76.vagrantup.com -y
+  - knife node delete base-centos-76.vagrantup.com -y || true
+  - knife client delete base-centos-76.vagrantup.com -y || true

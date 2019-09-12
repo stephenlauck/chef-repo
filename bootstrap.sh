@@ -45,10 +45,12 @@ NODE_NAME=$(hostname)
 FILE=/etc/chef/client.rb
 if [ ! -f "$FILE" ]; then
   /bin/echo 'log_location     STDOUT' >> /etc/chef/client.rb
-  /bin/echo -e "chef_server_url  \"https://api.chef.io/organizations/migration666\"" >> /etc/chef/client.rb
-  /bin/echo -e "validation_client_name \"migration666-validator\"" >> /etc/chef/client.rb
-  /bin/echo -e "validation_key \"/etc/chef/migration666-validator.pem\"" >> /etc/chef/client.rb
+  /bin/echo -e "chef_server_url  \"https://api.chef.io/organizations/fingerprint\"" >> /etc/chef/client.rb
+  /bin/echo -e "validation_client_name \"fingerprint-validator\"" >> /etc/chef/client.rb
+  /bin/echo -e "validation_key \"/etc/chef/fingerprint-validator.pem\"" >> /etc/chef/client.rb
   /bin/echo -e "node_name  \"${NODE_NAME}\"" >> /etc/chef/client.rb
+  /bin/echo -e "policy_group \"kitchen\"" >> /etc/chef/client.rb
+  /bin/echo -e "policy_name \"fingerprint\"" >> /etc/chef/client.rb
 fi
 
 echo "Running chef for $pkg_origin/$pkg_name"

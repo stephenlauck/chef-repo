@@ -1,6 +1,9 @@
 #!/bin/bash
 export HAB_LICENSE="accept-no-persist"
 
+customer_id="$1"
+datacollector_token="$2"
+
 if [ ! -e "/bin/hab" ]; then
   curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash
 fi
@@ -17,40 +20,28 @@ else
   groupadd hab && true
 fi
 
-# fix for https://github.com/habitat-sh/habitat/issues/6771
-hab pkg install core/hab-studio/0.83.0
-
-pkg_origin=lauck
-pkg_name=migration
-
-# echo "Starting $pkg_origin/$pkg_name"
-
-# latest_hart_file=$(ls -la /tmp/results/$pkg_origin-$pkg_name* | tail -n 1 | cut -d " " -f 10)
-# echo "Latest hart file is $latest_hart_file"
-
-# echo "Installing $latest_hart_file"
-# hab pkg install $latest_hart_file
-
-# echo "Determing pkg_prefix for $latest_hart_file"
-# pkg_prefix=$(find /hab/pkgs/$pkg_origin/$pkg_name -maxdepth 2 -mindepth 2 | sort | tail -n 1)
-
-# echo "Found $pkg_prefix"
+pkg_origin='migration'
+pkg_name='fingerprinter'
 
 echo "Installing $pkg_origin/$pkg_name"
 hab pkg install $pkg_origin/$pkg_name
 
-NODE_NAME=$(hostname)
+echo "Creating configuration overrides"
+mkdir -p /hab/user/fingerprinter/config/
+cat > /hab/user/fingerprinter/config/user.toml <<EOF
+[chef_license]
+acceptance = "accept-no-persist"
 
-# Create client.rb
-FILE=/etc/chef/client.rb
-if [ ! -f "$FILE" ]; then
-  /bin/echo 'log_location     STDOUT' >> /etc/chef/client.rb
-  /bin/echo -e "chef_server_url  \"https://api.chef.io/organizations/migration666\"" >> /etc/chef/client.rb
-  /bin/echo -e "validation_client_name \"migration666-validator\"" >> /etc/chef/client.rb
-  /bin/echo -e "validation_key \"/etc/chef/migration666-validator.pem\"" >> /etc/chef/client.rb
-  /bin/echo -e "node_name  \"${NODE_NAME}\"" >> /etc/chef/client.rb
-fi
+[automate]
+enable = true
+server_url = "https://migration-${customer_id}.success.chef.co/data-collector/v0/"
+token = "${datacollector_token}"
+EOF
 
-echo "Running chef for $pkg_origin/$pkg_name"
+echo "Determing pkg_prefix for $latest_hart_file"
+pkg_prefix=$(find /hab/pkgs/$pkg_origin/$pkg_name -maxdepth 2 -mindepth 2 | sort | tail -n 1)
+
+echo "Found $pkg_prefix"
+
 cd $pkg_prefix
-hab pkg exec $pkg_origin/$pkg_name chef-client
+hab pkg exec $pkg_origin/$pkg_name chef-client -z -c $pkg_prefix/config/bootstrap-config.rb

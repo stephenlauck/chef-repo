@@ -1,6 +1,4 @@
 #!/bin/bash
-export HAB_LICENSE="accept-no-persist"
-
 customer_id="$1"
 datacollector_token="$2"
 
@@ -22,6 +20,9 @@ fi
 
 pkg_origin='migration'
 pkg_name='fingerprinter'
+
+echo "By running this script, you accept the Chef license agreement"
+hab license accept
 
 echo "Installing $pkg_origin/$pkg_name"
 hab pkg install $pkg_origin/$pkg_name

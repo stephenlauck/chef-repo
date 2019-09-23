@@ -13,6 +13,7 @@ verifier:
 
 platforms:
   - name: centos-7.6
+  - name: tas50/windows_2016
 
 suites:
   - name: base
@@ -21,10 +22,3 @@ suites:
     verifier:
       inspec_tests:
         test/integration/base
-
-lifecycle:
-  pre_destroy:
-  - remote: rm /etc/chef/client.*
-  post_destroy:
-  - knife node delete base-centos-76.vagrantup.com -y
-  - knife client delete base-centos-76.vagrantup.com -y

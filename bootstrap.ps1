@@ -9,7 +9,7 @@ if (!(Get-Command hab -ErrorAction SilentlyContinue)) {
 }
 
 $pkg_origin='migration'
-$pkg_name='fingerprint'
+$pkg_name='fingerprinter'
 
 Write-Output "Install $pkg_origin/$pkg_name"
 

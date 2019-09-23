@@ -1,4 +1,7 @@
 name 'migration'
-default_source :chef_repo, "../"
+
+default_source :supermarket
+
 run_list 'fingerprint::default'
 
+cookbook 'fingerprint', path: '../cookbooks/fingerprint'

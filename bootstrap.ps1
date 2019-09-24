@@ -20,7 +20,7 @@ Write-Output "Creating configuration overrides"
 New-Item "C:\hab\user\fingerprinter\config" -ItemType Directory
 Set-Content -Path "C:\hab\user\fingerprinter\config\user.toml" -Value @"
 [chef_license]
-acceptance = "accept-no-persist"
+acceptance = "accept"
 
 [automate]
 enable = true

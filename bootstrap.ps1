@@ -2,11 +2,12 @@ param([String]$customer_id, [String]$datacollector_token)
 
 Set-ExecutionPolicy Bypass -Scope Process -Force
 
-$env:HAB_LICENSE="accept-no-persist"
-
 if (!(Get-Command hab -ErrorAction SilentlyContinue)) {
   iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.ps1'))
 }
+
+Write-Output "By running this script, you accept the Chef license agreement"
+hab license accept
 
 $pkg_origin='migration'
 $pkg_name='fingerprinter'
